@@ -1,0 +1,2 @@
+console.log ("pixiv.re UI");console.log("Copyright (C) 2024 kdxiaoyi. All right reserved.\nSee more @ //kdx233.github.io/licen");
+document.getElementById("noscript").setAttribute("style", "display:none;");
