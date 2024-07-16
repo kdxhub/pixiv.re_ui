@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head>
   <meta charset="UTF-8" />
-  <title>PIXIV.RE UI - kdx233.github.io</title>
+  <title id="pagetitle">PIXIV.RE UI - kdx233.github.io</title>
   <script src="https://unpkg.com/sober@0.2.13/dist/sober.min.js"></script>
   <script src="./js/jQuery.js"></script>
   <link rel="stylesheet" href="./css/sober-theme-blue.css" />
@@ -35,20 +35,22 @@
       </s-segmented-button>
       </div>
       <s-button slot="action" type="text">取消</s-button>
-      <s-button onclick="search(document.getElementById('new_id').value);" slot="action" type="text">发起搜索</s-button>
+      <s-button onclick="startsearch(document.getElementById('new_id').value);" slot="action" type="text">发起搜索</s-button>
     </s-dialog>
-    <!-- 提示框 -->
+    <!-- Tipbox跳板 -->
     <s-snackbar id='snackbar'></s-snackbar>
     <!-- 页面主体元素 -->
-    <div id="welcome" class="welcome">
-      <!-- 欢迎界面 -->
+    <div id="welcome" class="welcome"><!-- 欢迎界面 -->
       <p><big>欢迎使用Pixiv.re UI</big></p>
       <p>PIXIV插画批量获取工具</p>
       <s-button onclick="newSearch();"><s-icon type="search" slot="start"></s-icon>发起新查询</s-button>
     </div>
-    <div id="result" class="result">
-      <!-- 结果UI -->
+    <div id="result" class="result"><!-- 结果UI -->
       
+    </div>
+    <!-- 跳板元素（全隐藏） -->
+    <div style='display:none;'>
+      <div id='webview'></div>
     </div>
   </div></s-scroll-view></s-page>
   <script src="./js/main.js"></script>
