@@ -24,7 +24,7 @@ function search(id) {//开始请求指定图片
   if (Number(id.replace(/[^0-9]/g, "")) <= 0) {msg("主人，这是一个无效的车牌号喵~", "Σ(ﾟ∀ﾟﾉ)ﾉ");newSearch();return;};
   setUItitle(`<s-button disabled="true" type="text"><s-circular-progress slot="start" indeterminate="true"></s-circular-progress></s-button>`+id);
   setPageTitle(id);
-  $("#welcome").load("https://baidu.com");
+  msg("抱歉，相关功能开发喵还在掉头发……","凭啥不支持跨域请求！！！")
 };
 function download() {//下载图片
   
