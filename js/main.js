@@ -24,9 +24,7 @@ function search(id) {//开始请求指定图片
   if (Number(id.replace(/[^0-9]/g, "")) <= 0) {msg("主人，这是一个无效的车牌号喵~", "Σ(ﾟ∀ﾟﾉ)ﾉ");newSearch();return;};
   setUItitle(`<s-button disabled="true" type="text"><s-circular-progress slot="start" indeterminate="true"></s-circular-progress></s-button>`+id);
   setPageTitle(id);
-  $.post(proxy+id+"-2147483647.png",function(data,status){
-    alert("数据: " + data + "\n状态: " + status);
-  });
+  $("#welcome").load("https://baidu.com");
 };
 function download() {//下载图片
   
