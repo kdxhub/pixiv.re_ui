@@ -19,12 +19,34 @@ import 'sober/style/scroll-view.css'
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 100vh;
+  height: 100%;
   margin: 0 0 0 0;
   text-align: center;
+}
+
+.result {
+  position: relative;
+  top: 0;
+  height: 120%;
+  width: 90vw;
+  margin: 0 0 10px 0;
+  left: 5vw;
+  right: 5vw;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre-warp;
 }
 
 .codearea {
   display: block;
   white-space: pre-wrap;
+}
+
+.resultList {
+  padding: 0 0 0 0;
+  list-style-type:;
+}
+
+img {
+  width: 100%;
 }
