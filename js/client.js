@@ -24,9 +24,9 @@ function download_linux() {//下载shell脚本
   msg("喵~", "(｡•ᴗ-)_");return;
 };
 function copycurl() {//复制curl命令
-//bash $(curl -L "https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh")
+//bash -c $(curl -L "https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh")
   if (navigator.clipboard == undefined) {msg("喵~主人的浏览器不支持一键复制呢…", "(｡･ˇ_ˇ･｡:)");return;};
-  navigator.clipboard.writeText(`bash $(curl -L "https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh")`).then(
+  navigator.clipboard.writeText(`bash -c $(curl -L "https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh")`).then(
     function () {/* clipboard successfully set */
     msg("已复制~", "朕已知晓");
     },
