@@ -36,8 +36,8 @@ function startsearch(idSub2) {//发起新请求
   if (nl.selected == true) {proxy="https://pixiv.nl/";};
   if (re.selected == true) {proxy="https://pixiv.re/";};
   if (cat.selected == true) {proxy="https://pixiv.cat/";};
-  console.log(`发起新请求 @ `+window.location.href.replace(/[?&].*=[^&]*&?/g, "") + "?id=" + id.replace(/[^0-9]/g, "") + "&proxy=" +proxy);
-  window.location.href = window.location.href.replace(/[?&].*=[^&]*&?/g, "") + "?id=" + id.replace(/[^0-9]/g, "") + "&proxy=" +proxy;
+  console.log(`发起新请求 @ `+window.location.href.replace(/[?&].*=[^&]*&?/g, "") + "?id=" + idSub2.replace(/[^0-9]/g, "") + "&proxy=" +proxy);
+  window.location.href = window.location.href.replace(/[?&].*=[^&]*&?/g, "") + "?id=" + idSub2.replace(/[^0-9]/g, "") + "&proxy=" +proxy;
   return;
 };
 async function search(idSub) {//开始请求指定图片
