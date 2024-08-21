@@ -62,7 +62,7 @@ async function search(idSub) {//开始请求指定图片
   };
 };
 function img_err_callback(which) {//图片加载失败回调
-  msg(`图片#`+which+` 加载失败，也许由于网络原因或编号不存在，反正不是本喵的错误 哼╯^╰`,"(⋟﹏⋞)");
+  msg(`图片#`+which+` 被玩坏了!这肯定不是本喵的问题!绝对不是! 哼╯^╰`,"(⋟﹏⋞)");
   console.warn(`Image #`+which+` 加载失败`);
   let img_onerr=document.getElementById("img"+which);
   img_onerr.setAttribute("onerror","void(0);");//取消回调防止二次错误

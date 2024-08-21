@@ -16,7 +16,7 @@ function startsearch(id) {//发起新请求
 };
 function download_linux() {//下载shell脚本
   var hidden_a = document.createElement('a'); 
-  hidden_a.setAttribute('href', 'https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh');
+  hidden_a.setAttribute('href', 'https://kdxiaoyi.top/pixiv.re_ui/client/pixiv.sh');
   hidden_a.setAttribute('target', '_blank');
   hidden_a.setAttribute('download', "pixiv.sh"); 
   document.body.appendChild(hidden_a); hidden_a.click();
@@ -24,9 +24,9 @@ function download_linux() {//下载shell脚本
   msg("喵~", "(｡•ᴗ-)_");return;
 };
 function copycurl() {//复制curl命令
-//bash -c $(curl -L "https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh")
+//bash -c '$(curl -LfsS "https://kdxiaoyi.top/pixiv.re_ui/client/pixiv.sh")'
   if (navigator.clipboard == undefined) {msg("喵~主人的浏览器不支持一键复制呢…", "(｡･ˇ_ˇ･｡:)");return;};
-  navigator.clipboard.writeText(`bash -c $(curl -L "https://kdxhub.github.io/pixiv.re_ui/client/pixiv.sh")`).then(
+  navigator.clipboard.writeText(`bash -c '$(curl -LfsS "https://kdxiaoyi.top/pixiv.re_ui/client/pixiv.sh")'`).then(
     function () {/* clipboard successfully set */
     msg("已复制~", "朕已知晓");
     },
