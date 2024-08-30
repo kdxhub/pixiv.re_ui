@@ -3,12 +3,13 @@
 # 发布于https://kdxhub.github.io/blogs/2024/24
 # Copyright (C) 2024, kdxiaoyi.
 # All right reserved.
-# 详见https://kdx233.github.io/licen.htm
+# 详见https://kdx233.github.io/licen
 
 # 帮助文本
+ver=2
 if [ "1$(echo "$1" | grep "h")" != "1" ];then
   echo Pixiv 插画批量下载
-  echo Beta 1.0.0
+  echo ver.${ver}
   echo "
  用法：
  pixiv.sh [id] [proxy] [getM]
@@ -58,10 +59,14 @@ all=$(echo "$all" | grep -Poi "作品只有[.\s][0-9]*")
 all=$(echo "$all" | tr -cd "[0-9]" )
 
 # 判断插画状态
-if [ $(curl -L -I -m 10 -o /dev/null -s -w %{http_code} "${proxy}${id}-2147483649.png") -ne 404 ];then 
+httpcode = $(curl -L -I -m 10 -o /dev/null -s -w %{http_code} "${proxy}${id}-2147483649.png")
+if [ ${httpcode} -ne 404 ];then 
   echo  → 主人，坏！${id}不是一个有效的车牌号啊呜~
   exit 400
-elif [ "testr$deleted" != "testr" ];then
+elif [ ${httpcode} -eq 500 ];then
+  echo  → 主人，远程服务器发生了…内部错误啊呜~
+  exit 500
+elif [ "testr${deleted}" != "testr" ];then
   echo  → 主人真是变态…那里…那个…会…作品${id}不存在、已被删除或无法下载
   exit 404
   fi
