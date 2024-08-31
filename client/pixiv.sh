@@ -5,8 +5,11 @@
 # All right reserved.
 # 详见https://kdx233.github.io/licen
 
+# 更新检测
+ver=2 & {
+  IFS=';' read -ra updataInfo <<< $(curl -L https://kdxiaoyi.top/pixiv.re_ui/client/pixiv.sh.version)
+}
 # 帮助文本
-ver=2
 if [ "1$(echo "$1" | grep "h")" != "1" ];then
   echo Pixiv 插画批量下载
   echo ver.${ver}
@@ -88,8 +91,8 @@ if [ "testr$3" == "testr" ];then
     echo " → 作品${id}含有${all}张插图
  主人是想怎么狠狠的下载呢？
  [1] 全部下载（默认）
- [2] 指定下载部分
- [0] 取消下载"
+ [2] 指定下载部分(没做)
+ [0] 取消"
     read -n 1 -p "选择下载方式> " choice
     if [ "a$choice" == "a0" ];then exit 0;
     elif [ "a$choice" == "a2" ];then mode=part;
