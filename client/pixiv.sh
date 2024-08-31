@@ -4,25 +4,45 @@
 # Copyright (C) 2024, kdxiaoyi.
 # All right reserved.
 # 详见https://kdx233.github.io/licen
+# 转载请勿删除此发布声明
 
 # 更新检测
-ver=2 & {
-  IFS=';' read -ra updataInfo <<< $(curl -L https://kdxiaoyi.top/pixiv.re_ui/client/pixiv.sh.version)
-}
+bypassUpdata=false
+## 将上方bypassUpdata修改为「true」即可跳过更新检查
+if [ "$4" != "" ];then bypassUpdata=true;fi;ver=3
+if [ "${bypassUpdata}" == false ];then {
+  IFS='§' read -ra updataInfo <<< $(curl -LfsS https://kdxiaoyi.top/pixiv.re_ui/client/pixiv.sh.version)
+  if [[ ${updataInfo[0]} =~ ^[0-9]+$ ]];then
+      if [ ${ver} -lt ${updataInfo[0]} ];then
+        echo [!] 有新版下载喵可用
+        echo 当前版本ver.${ver}，最新版本ver.${updataInfo[0]}
+        echo ${updataInfo[2]}
+        echo 下载地址：${updataInfo[1]}
+        echo
+      fi
+    else
+    echo 无法获取本喵的新版本
+    echo
+  fi
+};fi
+
 # 帮助文本
 if [ "1$(echo "$1" | grep "h")" != "1" ];then
   echo Pixiv 插画批量下载
   echo ver.${ver}
   echo "
  用法：
- pixiv.sh [id] [proxy] [getM]
-     id - 插画车牌号：懂得都懂
-  proxy - 代理模式：快速选择指定序号代理
-   getM - 获取模式：存在此参数则下载全部，否则询问
+ pixiv.sh [id] [proxy] [getM] [updata]
+      id - 插画车牌号：懂得都懂
+   proxy - 代理模式：快速选择指定序号代理
+    getM - 获取模式：存在此参数则下载全部，否则询问
+  updata - 忽略更新：存在此参数则跳过更新检查
+  
  任何不合适的参数值都会在执行时重新请求
- 下载的文件将保存在命令pwd获取到的目录下"
+ 下载的文件将保存在命令pwd获取到的目录下
+ 更新检查可以通过编辑脚本来跳过"
   exit 0
-  fi
+fi
 
 # ID获取
 id=$1
@@ -32,10 +52,10 @@ if [[ $id =~ ^[0-9]+$ ]];then echo;else
   echo
   read -p "插画编号> " id
   if [[ $id =~ ^[0-9]+$ ]];then echo;else
-      echo  → 那个编号…不可用的主人！输一个有效编号吧qaq~
-      exit 400
-    fi
+    echo  → 那个编号…不可用的主人！输一个有效编号吧qaq~
+    exit 400
   fi
+fi
 
 # 代理模式
 if [ "testr$(echo "$2" | tr -cd "[0-9]" )" != "testr" ];then proxy="$(echo "$2" | tr -cd "[0-9]" )"
@@ -45,11 +65,11 @@ else
   echo " [3] cat 代理"
   read -n 1 -p "主人想选择哪个代理服务呢喵~> " proxy
   echo
-  fi
+fi
 if [ 1$proxy -eq 13 ];then proxy=https://pixiv.cat/
   elif [ 1$proxy -eq 12 ];then proxy=https://pixiv.nl/
   else proxy=https://pixiv.re/
-  fi
+fi
   
 # 请求插画数据
 echo URI: "${proxy}${id}.png"
@@ -72,7 +92,7 @@ elif [ ${httpcode} -eq 500 ];then
 elif [ "testr${deleted}" != "testr" ];then
   echo  → 主人真是变态…那里…那个…会…作品${id}不存在、已被删除或无法下载
   exit 404
-  fi
+fi
 
 # 下载模式选择
 if [ "testr$3" == "testr" ];then 
@@ -98,14 +118,14 @@ if [ "testr$3" == "testr" ];then
     elif [ "a$choice" == "a2" ];then mode=part;
     else 
       mode=all
-      fi
     fi
+  fi
     echo
       #问询部分结束
   echo
   else
   mode=all
-  fi
+fi
 
 # 下载
 cd $(pwd)
@@ -128,8 +148,8 @@ if [ "$mode" == "part" ];then
     echo ✲ 正在下载第${i}张，共计${all}张…
     curl -L --output "$(pwd)/${id}/$i.png" "${proxy}${id}-$i.png"
     if [ $i -eq $all ];then break;fi
-    done
-  fi
+  done
+fi
 echo
 echo 下载已完成了喵~
 echo 无论主人是想prpr还是鉴赏细节，都可以准备好纸巾了呢~
